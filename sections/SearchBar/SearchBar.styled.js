@@ -5,7 +5,7 @@ export const Wrapper = styled.form`
   padding: 5vw 10vmax;
   padding-bottom: 10px;
   ${media.mobile} {
-    padding: 10vw 5vmax;
+    padding: 10vw 30px;
     padding-bottom: 10px;
   }
 `;

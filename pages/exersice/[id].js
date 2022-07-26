@@ -31,6 +31,7 @@ const Left = styled.div`
   }
   ${media.tablet} {
     padding-top: 200px;
+    margin-top: 130px;
   }
 `;
 
@@ -45,7 +46,6 @@ const Right = styled.div`
   ${media.tablet} {
     padding-left: 10px;
     padding-bottom: 60px;
-    padding-top: 0;
   }
 `;
 

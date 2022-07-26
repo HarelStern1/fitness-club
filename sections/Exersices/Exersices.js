@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 
 const Exersices = ({ exersices }) => {
   const router = useRouter();
-  console.log(exersices);
 
   const goToExersice = (id) => {
     router.push(`/exersice/${id}`);

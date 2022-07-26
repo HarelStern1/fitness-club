@@ -5,7 +5,7 @@ import media from "../../utils/media";
 export const Wrapper = styled.section`
   padding: 3vw 10vmax;
   ${media.mobile} {
-    padding: 10vw 5vmax;
+    padding: 10vw 30px;
   }
 `;
 

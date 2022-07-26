@@ -3,7 +3,6 @@ import hero from "../../assets/img/banner.png";
 import media from "../../utils/media";
 
 export const HeroWrapper = styled.section`
-  z-index: 999;
   position: relative;
   margin: 0;
   display: flex;
@@ -22,7 +21,7 @@ export const HeroWrapper = styled.section`
   }
 
   ${media.mobile} {
-    padding: 130px 30px;
+    padding: 160px 30px;
     padding-bottom: 0;
   }
 `;
@@ -65,6 +64,10 @@ export const SubTitle = styled.h1`
 export const Paragraph = styled.p`
   font-size: 23px;
   max-width: 400px;
+
+  ${media.mobile} {
+    margin: 10px 0;
+  }
 `;
 
 export const Button = styled.button`
