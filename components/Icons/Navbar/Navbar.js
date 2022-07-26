@@ -1,4 +1,4 @@
-import { LinksWrapper, NavWrapper, NavLink } from "./navbar.styled";
+import { LinksWrapper, NavWrapper, NavLink } from "./Navbar.styled";
 import logo from "../../../assets/img/Logo.png";
 import Image from "next/image";
 import { useState } from "react";
