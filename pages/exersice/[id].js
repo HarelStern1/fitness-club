@@ -1,4 +1,8 @@
-import { getExersiceById } from "../../utils/functions";
+import {
+  getExersiceById,
+  getSimilarExersicesByTarget,
+  getSimilarExersicesByEquipment,
+} from "../../utils/functions";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
@@ -6,6 +10,7 @@ import media from "../../utils/media";
 import bodyPartImage from "../../assets/icons/body-part.png";
 import targetImage from "../../assets/icons/target.png";
 import equipmentImage from "../../assets/icons/equipment.png";
+import SimilarExersices from "../../sections/SimilarExersices/SimilarExersices";
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -17,6 +22,7 @@ const Wrapper = styled.div`
   padding-top: 100px;
   ${media.tablet} {
     flex-direction: column;
+    margin-bottom: 300px;
   }
 `;
 
@@ -101,16 +107,27 @@ const StyledImg = styled.img`
 
 const Exersice = () => {
   const [exersice, setExersice] = useState({});
+  const [similarTarget, setSimilarTarget] = useState([]);
+  const [similarEquipment, setSimilarEquipment] = useState([]);
+
   const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
     const getExersice = async () => {
-      const data = await getExersiceById(router.query.id);
+      const data = await getExersiceById(id);
+      const similarTargetExersices = await getSimilarExersicesByTarget(
+        data.target
+      );
+      const similarEquipmentExersices = await getSimilarExersicesByEquipment(
+        data.equipment
+      );
       setExersice(data);
-      console.log(exersice);
+      setSimilarTarget(similarTargetExersices);
+      setSimilarEquipment(similarEquipmentExersices);
     };
     getExersice();
-  }, []);
+  }, [id]);
 
   const extraDetails = [
     {
@@ -128,33 +145,44 @@ const Exersice = () => {
   ];
 
   return (
-    <Wrapper>
-      <Left>
-        <img src={exersice.gifUrl} height="90%" width="100%" />
-      </Left>
-      <Right>
-        <Title>{exersice.name}</Title>
-        <Paragraph>
-          {`Exercises keep you strong. ${exersice.name} is one of the best
+    <>
+      <Wrapper>
+        <Left>
+          <img src={exersice.gifUrl} height="90%" width="100%" />
+        </Left>
+        <Right>
+          <Title>{exersice.name}</Title>
+          <Paragraph>
+            {`Exercises keep you strong. ${exersice.name} is one of the best
           exercises to target your ${exersice.target}. It will help you improve your mood and
           gain energy.`}
-        </Paragraph>
-        <Column>
-          {extraDetails.map((detail, idx) => {
-            return (
-              <Row key={idx}>
-                <ImageWrapper>
-                  <StyledImg src={detail.icon.src} />
-                </ImageWrapper>
-                <div>
-                  <Detail>{detail.name}</Detail>
-                </div>
-              </Row>
-            );
-          })}
-        </Column>
-      </Right>
-    </Wrapper>
+          </Paragraph>
+          <Column>
+            {extraDetails.map((detail, idx) => {
+              return (
+                <Row key={idx}>
+                  <ImageWrapper>
+                    <StyledImg src={detail.icon.src} />
+                  </ImageWrapper>
+                  <div>
+                    <Detail>{detail.name}</Detail>
+                  </div>
+                </Row>
+              );
+            })}
+          </Column>
+        </Right>
+      </Wrapper>
+      {similarTarget.length && (
+        <SimilarExersices similarExersices={similarTarget} type="target" />
+      )}
+      {similarEquipment.length && (
+        <SimilarExersices
+          similarExersices={similarEquipment}
+          type="equipment"
+        />
+      )}
+    </>
   );
 };
 

@@ -7,3 +7,19 @@ export const getExersiceById = async (id) => {
   });
   return chosen;
 };
+
+export const getSimilarExersicesByTarget = async (target) => {
+  const data = await fetchData(url, exersicesOptions);
+  const similar = data.filter((exersice) => {
+    return exersice.target === target;
+  });
+  return similar;
+};
+
+export const getSimilarExersicesByEquipment = async (equipment) => {
+  const data = await fetchData(url, exersicesOptions);
+  const similar = data.filter((exersice) => {
+    return exersice.equipment === equipment;
+  });
+  return similar;
+};
