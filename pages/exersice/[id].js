@@ -22,7 +22,12 @@ const Wrapper = styled.div`
   padding-top: 100px;
   ${media.tablet} {
     flex-direction: column;
+  }
+  ${media.burger} {
     margin-bottom: 300px;
+  }
+  ${media.small} {
+    margin-bottom: 500px;
   }
 `;
 
