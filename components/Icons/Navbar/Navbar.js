@@ -1,6 +1,13 @@
-import { LinksWrapper, NavWrapper, NavLink } from "./Navbar.styled";
+import {
+  LinksWrapper,
+  NavWrapper,
+  NavLink,
+  StyledLink,
+  StyledImage,
+} from "./Navbar.styled";
 import logo from "../../../assets/img/Logo.png";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -16,7 +23,9 @@ const Navbar = () => {
 
   return (
     <NavWrapper>
-      <Image src={logo} />
+      <Link href="/">
+        <Image src={logo} />
+      </Link>
       <LinksWrapper>
         <NavLink href="/" onClick={() => setActive(0)} active={active}>
           Home

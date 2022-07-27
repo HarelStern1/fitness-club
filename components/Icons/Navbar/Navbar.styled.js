@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import media from "../../../utils/media";
 import Link from "next/link";
+import Image from "next/image";
 
 export const NavWrapper = styled.nav`
   position: absolute;
@@ -39,6 +40,11 @@ export const NavLink = styled.a`
       `;
     }
   }}
+  &:hover {
+    cursor: pointer;
+  }
+`;
+export const StyledLink = styled(Image)`
   &:hover {
     cursor: pointer;
   }

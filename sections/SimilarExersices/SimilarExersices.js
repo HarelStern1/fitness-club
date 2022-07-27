@@ -18,6 +18,10 @@ const SimilarExersices = ({ similarExersices, type }) => {
   const isMobile = useMediaQuery("767");
   const router = useRouter();
 
+  const goToExersice = (id) => {
+    router.push(`/exersice/${id}`);
+  };
+
   return (
     <Wrapper>
       {type === "target" ? (
